@@ -13,6 +13,16 @@ export class RecipeListComponent implements OnInit {
       'This is a simple test',
       'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
     ),
+    new Recipe(
+      'A Test Recipe',
+      'This is a simple test',
+      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
+    ),
+    new Recipe(
+      'A Test Recipe',
+      'This is a simple test',
+      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
+    ),
   ];
 
   constructor() {}
