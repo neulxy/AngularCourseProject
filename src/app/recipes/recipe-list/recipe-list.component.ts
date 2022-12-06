@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -9,21 +9,27 @@ import { Recipe } from '../recipe.model';
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [
     new Recipe(
-      'A Test Recipe',
-      'This is a simple test',
+      'Recipe A',
+      'This is a simple test A',
       'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
     ),
     new Recipe(
-      'A Test Recipe',
-      'This is a simple test',
-      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
+      'Recipe B',
+      'This is a simple test B',
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/group_final-a6ddb3e.jpg'
     ),
     new Recipe(
-      'A Test Recipe',
-      'This is a simple test',
+      'Recipe C',
+      'This is a simple test C',
       'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
     ),
   ];
+
+  @Output() recipeClick = new EventEmitter<Recipe>();
+
+  onSelect(recipe: Recipe) {
+    this.recipeClick.emit(recipe);
+  }
 
   constructor() {}
 
