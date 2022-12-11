@@ -1,23 +1,27 @@
 import { EventEmitter } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
 import { Recipe } from './recipe.model';
 
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe(
-      'Recipe A',
+      'Fried Chicken',
       'This is a simple test A',
-      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
+      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg',
+      [new Ingredient('Chicken', 1), new Ingredient('French Fries', 20)]
     ),
     new Recipe(
-      'Recipe B',
+      'Salad',
       'This is a simple test B',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/group_final-a6ddb3e.jpg'
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/group_final-a6ddb3e.jpg',
+      [new Ingredient('Apple', 2), new Ingredient('Tomatoes', 2)]
     ),
     new Recipe(
       'Recipe C',
       'This is a simple test C',
-      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg'
+      'https://assets.epicurious.com/photos/62f16ed5fe4be95d5a460eed/1:1/w_2240,c_limit/RoastChicken_RECIPE_080420_37993.jpg',
+      []
     ),
   ];
 
