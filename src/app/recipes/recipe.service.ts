@@ -28,4 +28,8 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice(); //by using slice, just return a copy of the recipe array and do not touch the original array
   }
+
+  getRecipeById(index: number) {
+    return this.recipes[index];
+  }
 }
