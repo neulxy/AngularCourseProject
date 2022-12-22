@@ -27,7 +27,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       (index: number) => {
         this.editedItemIndex = index;
         this.editMode = true;
-        console.log(index);
       }
     );
   }
