@@ -26,6 +26,11 @@ export class RecipeService {
     ),
   ];
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   getRecipes() {
     return this.recipes.slice(); //by using slice, just return a copy of the recipe array and do not touch the original array
   }
