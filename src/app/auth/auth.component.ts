@@ -16,11 +16,7 @@ export class AuthComponent {
   error: string = null;
   @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -65,9 +61,6 @@ export class AuthComponent {
   }
 
   private showErrorAlert(message: string) {
-    const alertCmpFactory =
-      this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
-
     const hostViewContainerRef = this.alertHost.viewContainerRef;
     hostViewContainerRef.clear();
 
