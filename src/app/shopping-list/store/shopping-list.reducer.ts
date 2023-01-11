@@ -5,6 +5,10 @@ const initialState = {
   ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
 };
 
+export interface ShoppingListStore {
+  shoppingList: { ingredients: Ingredient[] };
+}
+
 export function shoppingListReducer(
   state = initialState,
   action: ShoppingListActions.AddIngredient
@@ -15,5 +19,7 @@ export function shoppingListReducer(
         ...state,
         ingredients: [...state.ingredients, action.payload],
       };
+    default:
+      return state;
   }
 }
