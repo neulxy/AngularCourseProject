@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import * as AuthActions from './auth.actions';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 export interface AuthResponseData {
   idToken: string;
@@ -45,9 +45,25 @@ export class AuthEffects {
                 expirationDate: expirationDate,
               });
             }),
-            catchError((error) => {
-              //... error processing
-              return EMPTY;
+            catchError((errorRes) => {
+              let errorMessage = 'An unknown error occured!';
+
+              if (!errorRes.error || !errorRes.error.error) {
+                return of(new AuthActions.LoginFail(errorMessage));
+              }
+
+              switch (errorRes.error.error.message) {
+                case 'EMAIL_EXISTS':
+                  errorMessage = 'This email exists already';
+                  break;
+                case 'EMAIL_NOT_FOUND':
+                  errorMessage = 'This email does not exist';
+                  break;
+                case 'INVALID_PASSWORD':
+                  errorMessage = 'This password  is not correct';
+                  break;
+              }
+              return of(new AuthActions.LoginFail(errorMessage));
             })
           );
       })
