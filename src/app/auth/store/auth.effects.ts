@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import * as AuthActions from './auth.actions';
 import { Router } from '@angular/router';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { User } from '../user.model';
 import { AuthService } from '../auth.service';
 
@@ -35,6 +35,7 @@ const handleAuthentication = (resData: AuthResponseData) => {
     userId: resData.localId,
     token: resData.idToken,
     expirationDate: expirationDate,
+    redirect: true,
   });
 };
 
@@ -123,8 +124,10 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.AUTHENTICATE_SUCCESS),
-        tap(() => {
-          this.router.navigate(['/']);
+        tap((authSuccessAction: AuthActions.AuthenitcateSuccess) => {
+          if (authSuccessAction.payload.redirect) {
+            this.router.navigate(['/']);
+          }
         })
       ),
     { dispatch: false }
@@ -162,6 +165,7 @@ export class AuthEffects {
             userId: loadedUser.id,
             token: loadedUser.token,
             expirationDate: new Date(userData._tokenExpirationDate),
+            redirect: false,
           });
           // const expirationDuration =
           //   new Date(userData._tokenExpirationDate).getTime() -
